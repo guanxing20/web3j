@@ -12,7 +12,6 @@
  */
 package org.web3j.abi.datatypes;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -52,12 +51,11 @@ public class DynamicArrayTest {
 
     @Test
     public void testMultidimensionalDynamicArray() {
-        List<List<BigInteger>> input = new ArrayList<>();
         DynamicArray<DynamicArray> array = new DynamicArray<>(
                 DynamicArray.class,
-                List.of(new DynamicArray<DynamicArray>(
+                List.of(new DynamicArray<>(
                                 DynamicArray.class,
-                                List.of(new DynamicArray<Uint256>(Uint256.class, new ArrayList<>()))
+                                List.of(new DynamicArray<>(Uint256.class, new ArrayList<>()))
                         )
                 ));
         assertEquals("uint256[][][]", array.getTypeAsString());
